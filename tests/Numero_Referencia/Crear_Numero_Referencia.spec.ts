@@ -1,7 +1,7 @@
 import { test } from '@playwright/test';
-import { CommonActions } from '../utils/CommonActions';
-import { ElementActions } from '../utils/ElementActions';
-import { CommonObjects } from '../objects/CommonObjects';
+import { CommonActions } from '../../utils/CommonActions';
+import { ElementActions } from '../../utils/ElementActions';
+import { CommonObjects } from '../../objects/CommonObjects';
 
 test.describe('Crear Número de Referencia', () => {
   test('Crear número de referencia para importación con pago de demora', async ({ page }) => {
@@ -11,6 +11,9 @@ test.describe('Crear Número de Referencia', () => {
 
     // 1. Login en la aplicación
     await commonActions.login();
+
+    // 2. Selección de cliente
+    await commonActions.select_cliente();
 
     // 2. Navegación al formulario
     await elementActions.click(CommonObjects.SOLICITUDES, true, 'Click en menú Solicitudes');

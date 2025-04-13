@@ -1,14 +1,27 @@
 {
   "name": "automatizaciondphvirtual",
   "version": "1.0.0",
+  "type": "commonjs",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test:db": "ts-node tests/database.test.ts"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs"
+    }
+  },
   "devDependencies": {
     "@playwright/test": "^1.51.1",
-    "@types/node": "^22.14.1"
+    "@types/node": "^22.14.1",
+    "ts-node": "^10.9.2"
+  },
+  "dependencies": {
+    "@types/mssql": "^9.1.7",
+    "mssql": "^11.0.1"
   }
 }

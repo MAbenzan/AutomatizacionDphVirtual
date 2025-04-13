@@ -12,6 +12,10 @@ export class CommonObjects {
     static readonly Clave_Usuario = '//*[@id="password"]';
     static readonly BOTON_Acceder = '//*[@id="solicitudForm"]/div[4]/input';
 
+    // Cliente
+    static readonly LISTA_CLIENTES = 'body > div.nav-side-menu.panel-menu > div.brand.padding-10 > div > button > div'
+    static readonly CAMPO_CLIENTE = 'body > div.nav-side-menu.panel-menu > div.brand.padding-10 > div > div > div.bs-searchbox > input'
+
     //Menu
     static readonly SOLICITUDES = '//*[@id="menu-content"]/li[1]'
     static readonly REPORTES = '//*[@id="menu-content"]/li[2]'
