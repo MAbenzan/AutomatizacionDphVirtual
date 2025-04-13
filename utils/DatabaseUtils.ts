@@ -24,17 +24,18 @@ export class DatabaseUtils {
         }
     }*/
 
-    async getClienteByUsuario(usuarioName: string) {
+    async getClienteByUsuario(usuarioName: string, rol: string) {
         try {
             const pool = await this.pool;
             const result = await pool
                 .request()
                 .input('usuario', sql.VarChar, usuarioName)
+                .input('rol', sql.VarChar, rol)
                 .query(`
                     SELECT TOP 1 tkl_name 
                     FROM tkl_usuariosclientesdetalle
-                    WHERE tkl_usuariodphvirtualName = 'Miguel Benzan'
-                    AND tkl_roldphvirtualName = 'Cliente'
+                    WHERE tkl_usuariodphvirtualName = @usuario
+                    AND tkl_roldphvirtualName = @rol
                 `);
             
             return result.recordset[0]?.tkl_name;

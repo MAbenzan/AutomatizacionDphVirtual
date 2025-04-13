@@ -1,19 +1,14 @@
-export class CommonObjects {
-    // URLs
-    static readonly BASE_URL = 'https://dphcrmtest:4443';
+import { AppConfig } from '../constants/Constants';
 
-    // Datos de prueba
-    static readonly TEST_DATA = {
-        CORREO: 'mbenzan@dph.com.do',
-        PASSWORD: 'Mabr1321**'
-    };
+export class CommonObjects {
+
     // Login
     static readonly Correo_Usuario = '//*[@id="email"]';
     static readonly Clave_Usuario = '//*[@id="password"]';
     static readonly BOTON_Acceder = '//*[@id="solicitudForm"]/div[4]/input';
 
     // Cliente
-    static readonly LISTA_CLIENTES = 'body > div.nav-side-menu.panel-menu > div.brand.padding-10 > div > button > div'
+    static readonly LISTA_CLIENTES = 'body > div.nav-side-menu.panel-menu > div.brand.padding-10 > div > button > div';
     static readonly CAMPO_CLIENTE = 'body > div.nav-side-menu.panel-menu > div.brand.padding-10 > div > div > div.bs-searchbox > input'
 
     //Menu
