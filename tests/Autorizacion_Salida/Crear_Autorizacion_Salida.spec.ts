@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { CommonActions } from '../../utils/CommonActions';
 import { ElementActions } from '../../utils/ElementActions';
 import { CommonObjects } from '../../objects/CommonObjects';
-import { Roles } from '../../constants/Constants';
+import { Garantias, Roles } from '../../constants/Constants';
 
 test.describe('Crear Autorización de Salida', () => {
   test('Crear autorización de salida para importación con pago de demora', async ({ page }) => {
@@ -14,7 +14,7 @@ test.describe('Crear Autorización de Salida', () => {
     await commonActions.login();
 
     // 2. Selección de cliente
-    await commonActions.select_cliente(Roles.CONSOLIDADORA);
+    await commonActions.select_cliente(Roles.CONSOLIDADORA, Garantias.GARANTIA_SI);
 
     // 3. Navegación al formulario
     await elementActions.click(CommonObjects.SOLICITUDES, true, 'Click en menú Solicitudes');

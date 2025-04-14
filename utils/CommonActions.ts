@@ -23,7 +23,11 @@ export class CommonActions {
         await this.elementActions.click(CommonObjects.BOTON_Acceder, true, 'Click en botón Acceder');
     }
 
-    async select_cliente(rol: string = Roles.CLIENTE, garantia: string = Garantias.GARANTIA_SI) {
+    async select_cliente(rol: string, garantia: string) {
+        if (!rol || !garantia) {
+            throw new Error('Debe proporcionar tanto el rol como la garantía');
+        }
+
         const nombreCliente = await this.dbUtils.getClienteByUsuario('Miguel Benzan', rol, garantia);
         if (!nombreCliente) {
             throw new Error(`No se encontró cliente para el usuario con rol ${rol} y garantía ${garantia}`);
