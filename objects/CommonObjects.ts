@@ -55,7 +55,7 @@ export class CommonObjects {
 
     //Texto Mensajes
     static readonly TEXTO_SOLICITUD_EXITOSA = '.sweet-alert.visible p.lead.text-muted'
-    static readonly TEXTO_GARANTIA_EXCEDIDA = '.sweet-alert.visible h2' 
+    static readonly TEXTO_GARANTIA_EXCEDIDA = '.sweet-alert.visible h2';
     
     // Modern Playwright selector method
     static getGarantiaExcedida(page: Page) {

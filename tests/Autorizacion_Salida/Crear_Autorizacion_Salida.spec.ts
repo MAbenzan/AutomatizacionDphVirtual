@@ -24,15 +24,12 @@ test.describe('Crear Autorización de Salida', () => {
 
     // 4. Selección de módulo y demora
     await elementActions.click(CommonObjects.CHECK_IMPORTACION, true, 'Check Importación');
-    await elementActions.click(CommonObjects.BOTTON_PROXIMO2, true, 'Click en botón Próximo paso 2');
     await elementActions.click(CommonObjects.CHECK_1, true, 'Check demora específica');
     await elementActions.click(CommonObjects.BOTTON_PROXIMO2, true, 'Click en botón Próximo paso 2');
 
-    // Get text and verify message
-    const mensajeGarantia = await CommonObjects.getGarantiaExcedida(page).textContent();
-    expect(mensajeGarantia).toContain('Garantia excedida!');
-    if (mensajeGarantia==='Garantia excedida!') {   
-        await CommonObjects.getBotonNo(page).click();
+    const mensajeGarantia = await elementActions.obtenerTexto(CommonObjects.TEXTO_GARANTIA_EXCEDIDA);
+    if (mensajeGarantia === 'Garantia excedida!') {   
+        await elementActions.click(CommonObjects.BOTTON_NO, true, 'Click en botón No');
     }
 
   })

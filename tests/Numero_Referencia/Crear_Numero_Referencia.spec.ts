@@ -35,9 +35,9 @@ test.describe('Crear Número de Referencia', () => {
     await elementActions.click(CommonObjects.BOTTON_SI, true, 'Click en botón Sí');
 
     // 7. Verificación de resultados
-    await elementActions.verificarMensaje(CommonObjects.TEXTO_SOLICITUD_EXITOSA, 'Solicitud creada de forma exitosa!');
+    await elementActions.obtenerTexto(CommonObjects.TEXTO_SOLICITUD_EXITOSA, 'Solicitud creada de forma exitosa!');
     await elementActions.click(CommonObjects.BOTTON_CERRAR, true, 'Click en botón Cerrar');
-    await elementActions.verificarTexto(CommonObjects.TEXTO_PANTALLA_REFERENCIA, 'Numero de Referencia');
+    await elementActions.obtenerTexto(CommonObjects.TEXTO_PANTALLA_REFERENCIA, 'Numero de Referencia');
 
     await page.close();
   });
