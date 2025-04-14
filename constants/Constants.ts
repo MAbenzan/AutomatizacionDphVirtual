@@ -14,3 +14,8 @@ export const Roles = {
     AGENCIA_ADUANAL: 'Agencia Aduanal',
     CLIENTE_EXPRES: 'Cliente Express',
 } as const;
+
+export const Garantias = {
+   GARANTIA_SI: '1',
+   GARANTIA_NO: '0' 
+}

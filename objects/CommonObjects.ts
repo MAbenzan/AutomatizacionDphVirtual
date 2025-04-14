@@ -1,4 +1,5 @@
 import { AppConfig } from '../constants/Constants';
+import { Page } from '@playwright/test';
 
 export class CommonObjects {
 
@@ -38,7 +39,7 @@ export class CommonObjects {
     static readonly CAMPO_BUSCAR = '//*[@id="demoras-header"]/div/div/div[2]/div/input'
     static readonly CHECK_ALL = '//*[@id="demoras"]/thead/tr/th[1]/input'
     static readonly CHECK_1 = '//*[@id="demoras"]/tbody/tr[1]/td[1]/input'
-    static readonly TEXTO_SOLICITUD_EXITOSA = '.sweet-alert.visible p.lead.text-muted'
+
     static readonly TEXTO_PANTALLA_REFERENCIA = '#accordion-dph.pull-left'
 
     //Tipo de pago 
@@ -52,11 +53,18 @@ export class CommonObjects {
     static readonly CHECK_VACIO = '//*[@id="5c665e10-7b7c-e711-80c8-005056a12648"]'
     static readonly CHECK_SERVICIO_LOGISTICO = '//*[@id="5c665e10-7b7c-e711-80c8-005056a12648"]'
 
-
+    //Texto Mensajes
+    static readonly TEXTO_SOLICITUD_EXITOSA = '.sweet-alert.visible p.lead.text-muted'
+    static readonly TEXTO_GARANTIA_EXCEDIDA = '.sweet-alert.visible h2'  // Traditional selector
     
-  
-
-
+    // Modern Playwright selector method
+    static getGarantiaExcedida(page: Page) {
+        return page.getByRole('heading', { name: 'Garantia excedida!' });
+    }
+    
+    static getBotonNo(page: Page) {
+        return page.getByRole('button', { name: 'No' });
+    }
 }
 
 

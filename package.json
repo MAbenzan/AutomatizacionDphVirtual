@@ -4,7 +4,16 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test:db": "ts-node tests/database.test.ts"
+    "clean": "rimraf ./dist && rimraf ./.cache",
+    "clean:full": "rimraf ./node_modules && rimraf ./dist && rimraf ./.cache"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.51.1",
+    "@types/mssql": "^9.1.7",
+    "@types/node": "^22.14.1",
+    "rimraf": "^6.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
   },
   "keywords": [],
   "author": "",
@@ -15,13 +24,7 @@
       "module": "commonjs"
     }
   },
-  "devDependencies": {
-    "@playwright/test": "^1.51.1",
-    "@types/node": "^22.14.1",
-    "ts-node": "^10.9.2"
-  },
   "dependencies": {
-    "@types/mssql": "^9.1.7",
     "mssql": "^11.0.1"
   }
 }
