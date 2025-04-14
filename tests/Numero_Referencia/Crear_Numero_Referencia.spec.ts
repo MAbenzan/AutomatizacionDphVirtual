@@ -18,7 +18,7 @@ test.describe('Crear Número de Referencia', () => {
 
     // 3. Navegación al formulario
     await elementActions.click(CommonObjects.SOLICITUDES, true, 'Click en menú Solicitudes');
-    await elementActions.click(CommonObjects.Numero_Referencia, true, 'Click en opción Número de Referencia');
+    await elementActions.click(CommonObjects.NUMERO_REFERENCIA, true, 'Click en opción Número de Referencia');
     await elementActions.click(CommonObjects.BOTTON_NUEVO, true, 'Click en botón Nuevo');
 
     // 4. Selección de tipo de pago

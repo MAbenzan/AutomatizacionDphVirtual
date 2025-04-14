@@ -16,13 +16,13 @@ export class CommonObjects {
     static readonly REPORTES = '//*[@id="menu-content"]/li[2]'
 
     //Opciones Solicitudes
-    static readonly Autorizacion_Salida = '//a[contains(@href,"/Solicitud/ListaSolicitudes") and contains(text(),"Autorización de Salida")]'
-    static readonly Numero_Referencia = '//a[contains(@href,"/Solicitud/ListaSolicitudes/5817E8FE-2CC1-E811-80EB-005056A12648") and text()="Numero de Referencia"]'
-    static readonly Numero_Referencia_CP = '//a[contains(@href,"/Solicitud/ListaSolicitudes") and contains(text(),"Numero de Referencia Cargos Portuario")]'
-    static readonly Reclamacion = '//a[contains(@href,"/Solicitud/ListaSolicitudes") and contains(text(),"Reclamaciones")]'
-    static readonly Cambio_Consignatario_Impor = '//a[contains(@href,"/Solicitud/ListaSolicitudes") and contains(text(),"Cambio de Consignatarios Importacion")]'
-    static readonly Cambio_Consignatario_Expor = '//a[contains(@href,"/Solicitud/ListaSolicitudes") and contains(text(),"Cambio de Consignatarios Exportacion")]'
-    static readonly Cambio_Consignatario_Vechiulo = '//a[contains(@href,"/Solicitud/ListaSolicitudes") and contains(text(),"Cambio de Consignatario Vehículos Ro-Ro")]'
+    static readonly AUTORIZACION_SALIDA = '//a[contains(@href,"/Solicitud/ListaSolicitudes") and contains(text(),"Autorización de Salida")]'
+    static readonly NUMERO_REFERENCIA = '//a[contains(@href,"/Solicitud/ListaSolicitudes/5817E8FE-2CC1-E811-80EB-005056A12648") and text()="Numero de Referencia"]'
+    static readonly NUMERO_REFERENCIA_CP = '//a[contains(@href,"/Solicitud/ListaSolicitudes") and contains(text(),"Numero de Referencia Cargos Portuario")]'
+    static readonly RECLAMACION = '//a[contains(@href,"/Solicitud/ListaSolicitudes") and contains(text(),"Reclamaciones")]'
+    static readonly CAMBIO_CONSIGNATARIO_IMPORT = '//a[contains(@href,"/Solicitud/ListaSolicitudes") and contains(text(),"Cambio de Consignatarios Importacion")]'
+    static readonly CAMBIO_CONSIGNATARIO_EXPORT = '//a[contains(@href,"/Solicitud/ListaSolicitudes") and contains(text(),"Cambio de Consignatarios Exportacion")]'
+    static readonly CAMBIO_CONSIGNATARIO_VEHICULO = '//a[contains(@href,"/Solicitud/ListaSolicitudes") and contains(text(),"Cambio de Consignatario Vehículos Ro-Ro")]'
 
     //Objetos comunes
     static readonly BOTTON_NUEVO = '//*[@id="btnAdd"]'
