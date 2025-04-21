@@ -35,8 +35,7 @@ export const Modulos = {
     SERVICIOLOGISTICO: CommonObjects.CHECK_SERVICIO_LOGISTICO
 } as const;
 
-// Agregar este enum a tus constantes existentes
-export enum Tributacion {
-    EXENTO = 'Exento',
-    NO_EXENTO = 'No Exento'
-}
+export const Tributacion = {
+    EXENTO: 'Exento',
+    NO_EXENTO: 'No Exento'
+} as const;
