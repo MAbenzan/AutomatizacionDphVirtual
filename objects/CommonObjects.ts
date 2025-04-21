@@ -56,6 +56,13 @@ export class CommonObjects {
     //Texto Mensajes
     static readonly TEXTO_SOLICITUD_EXITOSA = '.sweet-alert.visible p.lead.text-muted'
     static readonly TEXTO_GARANTIA_EXCEDIDA = '.sweet-alert.visible h2' 
+
+    //Resumen
+    static readonly DEUDA_TOTAL = '#demorasTotalWip > tbody > tr > td:nth-child(1)'
+    static readonly ITBIS_TOTAL = '#demorasTotalWip > tbody > tr > td:nth-child(2)'
+    static readonly TOTAL_DEPOSITO = '#demorasTotalWip > tbody > tr > td:nth-child(3)'
+    static readonly TOTAL_A_PAGAR = '#demorasTotalWip > tbody > tr > td.text-right'
+
     
     // Modern Playwright selector method
     static getGarantiaExcedida(page: Page) {
