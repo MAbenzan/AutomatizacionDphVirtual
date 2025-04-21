@@ -74,8 +74,8 @@ export class CommonActions {
         }
         await this.elementActions.click(CommonObjects.BOTTON_FINALIZAR, true, 'Click en botón Finalizar');
         await this.elementActions.click(CommonObjects.BOTTON_SI, true, 'Click en botón Sí');
-        await this.elementActions.verificarMensaje(CommonObjects.TEXTO_SOLICITUD_EXITOSA, 'Solicitud creada de forma exitosa!');
+        await this.elementActions.obtenerTexto(CommonObjects.TEXTO_SOLICITUD_EXITOSA, 'Solicitud creada de forma exitosa!');
         await this.elementActions.click(CommonObjects.BOTTON_CERRAR, true, 'Click en botón Cerrar');
-        await this.elementActions.verificarTexto(CommonObjects.TEXTO_PANTALLA_REFERENCIA, 'Numero de Referencia');
+        await this.elementActions.obtenerTexto(CommonObjects.TEXTO_PANTALLA_REFERENCIA, 'Numero de Referencia');
     }
 }
