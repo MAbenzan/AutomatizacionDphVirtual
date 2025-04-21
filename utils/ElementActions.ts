@@ -70,25 +70,7 @@ export class ElementActions {
         }
     }
 
-    async verificarTexto(selector: string | Function, textoEsperado: string, description: string = '') {
-        try {
-            const element = typeof selector === 'function' ? selector(this.page) : this.page.locator(selector);
-            await element.waitFor({ state: 'visible' });
-            await this.resaltarElemento(element);
-            const textoActual = await element.innerText();
-            const textoLimpio = textoActual.trim();
-            const textoEsperadoLimpio = textoEsperado.trim();
-            if (!textoLimpio.includes(textoEsperadoLimpio)) {
-                throw new Error(`El texto no coincide. Esperado: ${textoEsperadoLimpio}, Actual: ${textoLimpio}`);
-            }
-            await this.page.screenshot({ path: `./screenshots/${description.replace(/\s/g, '_')}.png` });
-        } catch (error) {
-            await this.page.screenshot({ path: `./screenshots/error_${description.replace(/\s/g, '_')}.png` });
-            throw error;
-        }
-    }
-
-    async verificarMensaje(selector: string | Function, textoEsperado: string, description: string = '') {
+    async obtenerTexto(selector: string | Function, description: string = '') {
         try {
             const element = typeof selector === 'function' ? selector(this.page) : this.page.locator(selector);
             await element.waitFor({ state: 'visible' });
@@ -96,12 +78,12 @@ export class ElementActions {
             await this.resaltarElemento(element);
             const textoActual = await element.textContent();
             const textoLimpio = textoActual?.trim() || '';
-            if (textoLimpio !== textoEsperado) {
-                throw new Error(`El mensaje no coincide. Esperado: ${textoEsperado}, Actual: ${textoLimpio}`);
-            }
             await this.page.screenshot({ path: `./screenshots/${description.replace(/\s/g, '_')}.png` });
+            console.log(`Texto obtenido exitosamente: ${textoLimpio}`);
+            return textoLimpio;
         } catch (error) {
             await this.page.screenshot({ path: `./screenshots/error_${description.replace(/\s/g, '_')}.png` });
+            console.error(`Error al obtener el texto: ${description}`, error);
             throw error;
         }
     }
