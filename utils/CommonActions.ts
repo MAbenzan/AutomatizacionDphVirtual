@@ -37,7 +37,7 @@ export class CommonActions {
             throw new Error(`No se encontró cliente para el usuario con rol ${rol} y garantía ${garantia}`);
         }
         await this.elementActions.click(CommonObjects.LISTA_CLIENTES, true, 'Click en lista de clientes');
-        await this.elementActions.click(CommonObjects.CAMPO_CLIENTE, true);
+        await this.elementActions.click(CommonObjects.CAMPO_CLIENTE, true, 'Campo cliente');
         await this.page.keyboard.press('Control+A');
         await this.page.keyboard.press('Backspace');            
         await this.page.waitForTimeout(1000);
@@ -52,14 +52,16 @@ export class CommonActions {
         await this.elementActions.presionarEnter(CommonObjects.CAMPO_CLIENTE);
     }
 
-    async crearNumeroReferencia(tipoPago: string, modulo: string, demora: boolean) {
+    async crearNumeroReferencia(tipoPago: string, modulo: string, contenedor: boolean) {
 
         await this.elementActions.click(CommonObjects.SOLICITUDES, true, 'Click en menu Solicitud');
         await this.elementActions.click(CommonObjects.NUMERO_REFERENCIA, true, 'Click en opcion Número de Referencia');
         await this.elementActions.click(CommonObjects.BOTTON_NUEVO, true, 'Click en botón Nuevo');
         await this.elementActions.click(CommonObjects.CHECK_PAGO_DEMORA, true, 'Click en campo Tipo de pago');
         await this.elementActions.click(CommonObjects.BOTTON_PROXIMO1, true, 'Click en botón Próximo paso 1');
-        if (demora) {
+
+        // Buscar contenedor
+        if (contenedor) {
             const clienteActual = this.clienteContext.getCliente();
             const contenedor = await this.dbUtils.getContenedorPendiente(clienteActual);
             if (!contenedor) {
@@ -70,6 +72,11 @@ export class CommonActions {
             await this.page.waitForTimeout(1000);
             await this.page.keyboard.press('Enter');
             await this.page.waitForTimeout(2000);
+
+            const Contenedor_grid = await this.elementActions.obtenerTexto(CommonObjects.CONTENEDOR, 'Contenedor');
+            if (Contenedor_grid !== contenedor) {
+                throw new Error(`El contenedor encontrado (${Contenedor_grid}) no coincide con el contenedor buscado (${contenedor})`);
+            }
             await this.elementActions.click(CommonObjects.CHECK_1, true, 'Seleccionar contenedor encontrada');
         }
         else {
@@ -103,6 +110,7 @@ export class CommonActions {
             }
             const total_deuda = Number(await this.elementActions.obtenerTexto(CommonObjects.DEUDA_TOTAL, 'Total deuda'));
             const itbis = Number((total_deuda * 0.18).toFixed(2));
+            console.log('ITBIS calculado:', itbis);
             if (total_itbis !== itbis) {
                 throw new Error(`El total de ITBIS calculado (${itbis}) no coincide con el total de ITBIS mostrado (${total_itbis})`);
             }

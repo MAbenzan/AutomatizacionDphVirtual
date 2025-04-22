@@ -56,6 +56,7 @@ export class DatabaseUtils {
                     FROM tkl_demoracontenedor
                     WHERE tkl_ClienteName = @cliente
                     AND tkl_BalanceTotaldeDemora > 1
+                    AND tkl_estadooperativo is not null
                     ORDER BY tkl_ContenedorName DESC
                 `);
             

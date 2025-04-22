@@ -57,6 +57,9 @@ export class CommonObjects {
     static readonly TEXTO_SOLICITUD_EXITOSA = '.sweet-alert.visible p.lead.text-muted'
     static readonly TEXTO_GARANTIA_EXCEDIDA = '.sweet-alert.visible h2' 
 
+    //Grid seleccion equipos
+    static readonly CONTENEDOR = '#demoras > tbody > tr > td:nth-child(3)'
+
     //Resumen
     static readonly DEUDA_TOTAL = '#demorasTotalWip > tbody > tr > td:nth-child(1)'
     static readonly ITBIS_TOTAL = '#demorasTotalWip > tbody > tr > td:nth-child(2)'
