@@ -24,7 +24,7 @@ export class CommonActions {
         await this.page.goto(AppConfig.BASE_URL);
         await this.elementActions.escribir(CommonObjects.Correo_Usuario, AppConfig.TEST_DATA.CORREO, 'Correo de usuario');
         await this.elementActions.escribir(CommonObjects.Clave_Usuario, AppConfig.TEST_DATA.PASSWORD, 'Clave de usuario');
-        await this.elementActions.click(CommonObjects.BOTON_Acceder, true, 'Click en botón Acceder');
+        await this.elementActions.click(CommonObjects.btnAcceder, true, 'Click en botón Acceder');
     }
 
     async select_cliente(
@@ -36,8 +36,8 @@ export class CommonActions {
         if (!clienteInfo || !clienteInfo.nombre) {
             throw new Error(`No se encontró cliente para el usuario con rol ${rol} y garantía ${garantia}`);
         }
-        await this.elementActions.click(CommonObjects.LISTA_CLIENTES, true, 'Click en lista de clientes');
-        await this.elementActions.click(CommonObjects.CAMPO_CLIENTE, true, 'Campo cliente');
+        await this.elementActions.click(CommonObjects.lstClientes, true, 'Click en lista de clientes');
+        await this.elementActions.click(CommonObjects.campoCliente, true, 'Campo cliente');
         await this.page.keyboard.press('Control+A');
         await this.page.keyboard.press('Backspace');            
         await this.page.waitForTimeout(1000);
@@ -48,22 +48,24 @@ export class CommonActions {
             tributacion: tributacion
         });
         
-        await this.elementActions.escribir(CommonObjects.CAMPO_CLIENTE, clienteInfo.nombre, 'Campo cliente');
-        await this.elementActions.presionarEnter(CommonObjects.CAMPO_CLIENTE);
+        await this.elementActions.escribir(CommonObjects.campoCliente, clienteInfo.nombre, 'Campo cliente');
+        await this.elementActions.presionarEnter(CommonObjects.campoCliente);
     }
 
-    async crearNumeroReferencia(tipoPago: string, modulo: string, contenedor: boolean) {
+    async crearNumeroReferencia(tipoPago: string, modulo: typeof Modulos[keyof typeof Modulos], contenedor: boolean) {
 
-        await this.elementActions.click(CommonObjects.SOLICITUDES, true, 'Click en menu Solicitud');
+        await this.elementActions.click(CommonObjects.menuSolicitudes, true, 'Click en menu Solicitud');
         await this.elementActions.click(CommonObjects.NUMERO_REFERENCIA, true, 'Click en opcion Número de Referencia');
         await this.elementActions.click(CommonObjects.BOTTON_NUEVO, true, 'Click en botón Nuevo');
         await this.elementActions.click(CommonObjects.CHECK_PAGO_DEMORA, true, 'Click en campo Tipo de pago');
         await this.elementActions.click(CommonObjects.BOTTON_PROXIMO1, true, 'Click en botón Próximo paso 1');
+        await this.elementActions.click(modulo.selector, true, 'Check módulo');
+
 
         // Buscar contenedor
         if (contenedor) {
             const clienteActual = this.clienteContext.getCliente();
-            const contenedor = await this.dbUtils.getContenedorPendiente(clienteActual);
+            const contenedor = await this.dbUtils.getContenedorPendiente(clienteActual, modulo.nombre);
             if (!contenedor) {
                 throw new Error(`No se encontraron contenedores pendientes para el cliente ${clienteActual}`);
             }    
@@ -92,30 +94,30 @@ export class CommonActions {
         if (this.tributacion === 'Exento') {
             console.log('Entrando en validación de cliente Exento');
 
-            const total_itbis = Number(await this.elementActions.obtenerTexto(CommonObjects.ITBIS_TOTAL, 'Total ITBIS'));
+            const total_itbis = Number(await this.elementActions.obtenerTexto(CommonObjects.itbisTotal, 'Total ITBIS'));
             if (total_itbis !== 0) {
                 throw new Error(`El total de ITBIS para cliente exento debe ser 0, pero es ${total_itbis}`);
             }      
             console.log(`ITBIS correcto para cliente exento, ITBIS:(${total_itbis})`);
-            const total_deuda = Number(await this.elementActions.obtenerTexto(CommonObjects.DEUDA_TOTAL, 'Total deuda'));
-            const total_a_pagar = Number(await this.elementActions.obtenerTexto(CommonObjects.TOTAL_A_PAGAR, 'Total a pagar'));
+            const total_deuda = Number(await this.elementActions.obtenerTexto(CommonObjects.deudaTotal, 'Total deuda'));
+            const total_a_pagar = Number(await this.elementActions.obtenerTexto(CommonObjects.totalAPagar, 'Total a pagar'));
             if (total_deuda!== total_a_pagar) {
                 throw new Error(`El total deuda (${total_deuda}) no coincide con el total a pagar (${total_a_pagar})`);
             }   
             console.log(`Total a pagar correcto, Total deuda: ${total_deuda}`);  
         } else {
-            const total_itbis = Number(await this.elementActions.obtenerTexto(CommonObjects.ITBIS_TOTAL, 'Total ITBIS'));
+            const total_itbis = Number(await this.elementActions.obtenerTexto(CommonObjects.itbisTotal, 'Total ITBIS'));
             if (total_itbis === 0) {
                 throw new Error(`El total de ITBIS para cliente no exento debe ser mayor que 0, pero es ${total_itbis}`);
             }
-            const total_deuda = Number(await this.elementActions.obtenerTexto(CommonObjects.DEUDA_TOTAL, 'Total deuda'));
+            const total_deuda = Number(await this.elementActions.obtenerTexto(CommonObjects.deudaTotal, 'Total deuda'));
             const itbis = Number((total_deuda * 0.18).toFixed(2));
             console.log('ITBIS calculado:', itbis);
             if (total_itbis !== itbis) {
                 throw new Error(`El total de ITBIS calculado (${itbis}) no coincide con el total de ITBIS mostrado (${total_itbis})`);
             }
             console.log(`ITBIS correcto, Total deuda: ${total_deuda}, ITBIS: ${itbis}`);
-            const total_pagar = Number(await this.elementActions.obtenerTexto(CommonObjects.TOTAL_A_PAGAR, 'Total a pagar'));
+            const total_pagar = Number(await this.elementActions.obtenerTexto(CommonObjects.totalAPagar, 'Total a pagar'));
             const total_a_pagar = Number((total_deuda + itbis).toFixed(2));
             if (total_a_pagar !== total_pagar) {
                 throw new Error(`El total a pagar calculado (${total_a_pagar}) no coincide con el total a pagar mostrado (${total_pagar})`);

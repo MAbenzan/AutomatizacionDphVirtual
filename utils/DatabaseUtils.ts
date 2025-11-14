@@ -44,17 +44,19 @@ export class DatabaseUtils {
         }
     }
 
-    async getContenedorPendiente(clienteName: string) {
+    async getContenedorPendiente(clienteName: string, moduloName: string) {
         try {
             console.log('Buscando contenedor para el cliente:', clienteName);
             const pool = await this.pool;
             const result = await pool
                 .request()
                 .input('cliente', sql.VarChar, clienteName)
+                .input('modulo', sql.VarChar, moduloName)
                 .query(`
                     SELECT TOP 1 tkl_ContenedorName as contenedor
                     FROM tkl_demoracontenedor
                     WHERE tkl_ClienteName = @cliente
+                    AND tkl_moduloname = @modulo
                     AND tkl_BalanceTotaldeDemora > 1
                     AND tkl_estadooperativo is not null
                     ORDER BY tkl_ContenedorName DESC

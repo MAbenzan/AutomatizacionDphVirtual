@@ -2,7 +2,7 @@ import * as sql from 'mssql';
 
 export const sqlConfig: sql.config = {
     user: 'userautotest',
-    password: 'Mabr1321**',
+    password: 'Mabr1321*',
     server: 'dphcrmdbtest', // o la IP/nombre de tu servidor SQL 2016
     database: 'DPHDEV_MSCRM',
     options: {

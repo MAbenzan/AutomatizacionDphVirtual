@@ -29,10 +29,10 @@ export const TipoPago = {
 } as const;
 
 export const Modulos = {
-    IMPORTACION: CommonObjects.CHECK_IMPORTACION,
-    EXPORTACION: CommonObjects.CHECK_EXPORTACION,
-    VACIO: CommonObjects.CHECK_VACIO,
-    SERVICIOLOGISTICO: CommonObjects.CHECK_SERVICIO_LOGISTICO
+    IMPORTACION: { selector: CommonObjects.CHECK_IMPORTACION, nombre: 'Importación' },
+    EXPORTACION: { selector: CommonObjects.CHECK_EXPORTACION, nombre: 'Exportación' },
+    VACIO: { selector: CommonObjects.CHECK_VACIO, nombre: 'Vacio' },
+    SERVICIOLOGISTICO: { selector: CommonObjects.CHECK_SERVICIO_LOGISTICO, nombre: 'Servicio Logístico' }
 } as const;
 
 export const Tributacion = {

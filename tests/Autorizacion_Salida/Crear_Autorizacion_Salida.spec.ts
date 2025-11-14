@@ -17,8 +17,8 @@ test.describe('Crear Autorización de Salida', () => {
     await commonActions.select_cliente(Roles.CONSOLIDADORA, Garantias.GARANTIA_SI);
 
     // 3. Navegación al formulario
-    await elementActions.click(CommonObjects.SOLICITUDES, true, 'Click en menú Solicitudes');
-    await elementActions.click(CommonObjects.AUTORIZACION_SALIDA, true, 'Click en menú Autorización de Salida');
+    await elementActions.click(CommonObjects.menuSolicitudes, true, 'Click en menú Solicitudes');
+    await elementActions.click(CommonObjects.opcionAutorizacionSalida, true, 'Click en menú Autorización de Salida');
     await elementActions.click(CommonObjects.BOTTON_NUEVO, true, 'Click en botón Nueva');
     await elementActions.click(CommonObjects.BOTTON_PROXIMO1, true, 'Click en botón Próximo paso 1');
 

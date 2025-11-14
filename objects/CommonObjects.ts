@@ -6,52 +6,56 @@ export class CommonObjects {
     // Login
     static readonly Correo_Usuario = '//*[@id="email"]';
     static readonly Clave_Usuario = '//*[@id="password"]';
-    static readonly BOTON_Acceder = '//*[@id="solicitudForm"]/div[4]/input';
+    static btnAcceder(page: Page) {return page.getByRole('button', { name: 'Acceder' });}
 
     // Cliente
-    static readonly LISTA_CLIENTES = 'body > div.nav-side-menu.panel-menu > div.brand.padding-10 > div > button > div';
-    static readonly CAMPO_CLIENTE = 'body > div.nav-side-menu.panel-menu > div.brand.padding-10 > div > div > div.bs-searchbox > input'
+    static lstClientes(page: Page) {return page.locator('[role="combobox"][aria-haspopup="listbox"]');}
+    static campoCliente(page: Page) {return page.getByRole('combobox', { name: 'Search' });}
 
     //Menu
-    static readonly SOLICITUDES = '//*[@id="menu-content"]/li[1]'
-    static readonly REPORTES = '//*[@id="menu-content"]/li[2]'
+    static menuSolicitudes(page : Page) {return page.getByRole('link', { name: ' Solicitudes ' });} 
+    static menuReportes(page : Page) {return page.getByRole('link', { name: ' Reportes ' });}  
 
     //Opciones Solicitudes
-    static readonly AUTORIZACION_SALIDA = '//a[contains(@href,"/Solicitud/ListaSolicitudes") and contains(text(),"Autorización de Salida")]'
-    static readonly NUMERO_REFERENCIA = '//a[contains(@href,"/Solicitud/ListaSolicitudes/5817E8FE-2CC1-E811-80EB-005056A12648") and text()="Numero de Referencia"]'
-    static readonly NUMERO_REFERENCIA_CP = '//a[contains(@href,"/Solicitud/ListaSolicitudes") and contains(text(),"Numero de Referencia Cargos Portuario")]'
-    static readonly RECLAMACION = '//a[contains(@href,"/Solicitud/ListaSolicitudes") and contains(text(),"Reclamaciones")]'
+    static opcionAutorizacionSalida(page: Page) {return page.getByRole('link', { name: 'Autorización de Salida /' });}
+    static opcionNumeroReferencia(page: Page) {return page.getByRole('link', { name: 'Numero de Referencia', exact: true });}
+    static opcionNumeroReferenciaCP(page: Page) {return page.getByRole('link', { name: 'Numero de Referencia Cargos Portuario', exact: true });}
+    static opcionReclamacion(page: Page) {return page.getByRole('link', { name: 'Reclamaciones'});}
+    static opcionReleaseExport(page: Page) {return page.getByRole('link', { name: 'Release de Exportación' });}
+    static opcionNúmeroReferenciaPrecinto(page: Page) {return page.getByRole('link', { name: 'Número de Referencia Precinto' });}
+
     static readonly CAMBIO_CONSIGNATARIO_IMPORT = '//a[contains(@href,"/Solicitud/ListaSolicitudes") and contains(text(),"Cambio de Consignatarios Importacion")]'
     static readonly CAMBIO_CONSIGNATARIO_EXPORT = '//a[contains(@href,"/Solicitud/ListaSolicitudes") and contains(text(),"Cambio de Consignatarios Exportacion")]'
     static readonly CAMBIO_CONSIGNATARIO_VEHICULO = '//a[contains(@href,"/Solicitud/ListaSolicitudes") and contains(text(),"Cambio de Consignatario Vehículos Ro-Ro")]'
 
     //Objetos comunes
-    static readonly BOTTON_NUEVO = '//*[@id="btnAdd"]'
-    static readonly BOTTON_PROXIMO1 = ' //*[@id="btnnextstep1"]'
-    static readonly BOTTON_PROXIMO2 = '//*[@id="btnnextstep2"]'
-    static readonly BOTTON_CANCELAR1 = '//*[@id="step-1"]/div[2]/div[6]/button[2]'
-    static readonly BOTTON_CANCELAR2 = '//*[@id="step-2"]/div[2]/div[6]/button[3]'
-    static readonly BOTTON_FINALIZAR = '//*[@id="btnfinishstep3"]'
-    static readonly BOTTON_SI = '.sweet-alert.visible .confirm.btn.btn-success'
-    static readonly BOTTON_NO = '.sweet-alert.visible .cancel.btn.btn-danger'
-    static readonly BOTTON_CERRAR = '.sweet-alert.visible .cancel.btn.btn-danger'
-    static readonly BOTTON_IMPRIMIR = '.sweet-alert.visible .confirm.btn.btn-info'
-    static readonly CAMPO_BUSCAR = '//*[@id="demoras-header"]/div/div/div[2]/div/input'
-    static readonly CHECK_ALL = '//*[@id="demoras"]/thead/tr/th[1]/input'
-    static readonly CHECK_1 = '//*[@id="demoras"]/tbody/tr[1]/td[1]/input'
+    static btnNuevo(page: Page) {return page.getByRole('button', { name: '+ Nueva' });}
+    static btnProximo(page: Page) {return page.getByRole('button', { name: 'Próximo ' });}
+    static btnCancelar(page: Page) {return page.getByRole('button', { name: ' Cancelar' });}
+    static btnFinalizar(page: Page) {return page.getByRole('button', { name: 'Finalizar ' });}
+    static btnPrevio(page: Page) {return page.getByRole('button', { name: ' Previo' });}
+    static btnSi(page: Page) {return page.getByRole('button', { name: 'Sí' });}
+    static btnNo(page: Page) {return page.getByRole('button', { name: 'No' });}
+    static btnCerrar(page: Page) {return page.getByRole('button', { name: 'Cerrar' });}
+    static btnImprimir(page: Page) {return page.getByRole('button', { name: 'Imprimir' });}
+    static campoBuscar(page: Page) {return page.getByRole('textbox', { name: 'BL, Contenedor o Booking' });}
 
-    static readonly TEXTO_PANTALLA_REFERENCIA = '#accordion-dph.pull-left'
+    static checkAll(page: Page) {return page.getByRole('row', { name: 'BL / Booking Contenedor' }).getByRole('checkbox');}
+    static chekPrimero(page: Page) {return page.locator('#demoras tbody input.select-box').first();}
+
+    static textoPantallaReferencia(page: Page) {return page.getByRole('heading', { name: ' Numero de Referencia Tasa' });}
 
     //Tipo de pago 
-    static readonly CHECK_PAGO_DEMORA = '//*[@id="b458458c-5ea5-e811-80eb-005056a12648"]'
-    static readonly CHECK_PAGO_FACTURA = '//*[@id="5ee13b17-133e-ea11-80fa-005056af9c96"]'
-    static readonly CHECK_PAGO_FLETE = '//*[@id="d5da75a4-0d5d-ec11-8112-005056afac3d"]' 
+    static checkPagoDemora(page: Page) {return page.locator('#tipopagoid div').filter({ hasText: 'Pago Demora' }).getByRole('radio');}
+    static checkPagoFactura(page: Page) {return page.locator('#tipopagoid div').filter({ hasText: 'Factura' }).getByRole('radio');}
+    static checkPagoFlete(page: Page) {return page.locator('#tipopagoid div').filter({ hasText: 'Servicio Cobro Flete de Vehí' }).getByRole('radio');}
+    static checkPrecintosElectronicos(page: Page) {return page.locator('#tipopagoid div').filter({ hasText: 'Precintos Electronicos' }).getByRole('radio');}
 
     //Modulo
-    static readonly CHECK_IMPORTACION = '//*[@id="fc4b4202-7b7c-e711-80c8-005056a12648"]'
-    static readonly CHECK_EXPORTACION = '//*[@id="5b665e10-7b7c-e711-80c8-005056a12648"]'
-    static readonly CHECK_VACIO = '//*[@id="5c665e10-7b7c-e711-80c8-005056a12648"]'
-    static readonly CHECK_SERVICIO_LOGISTICO = '//*[@id="5c665e10-7b7c-e711-80c8-005056a12648"]'
+    static checkImportacion(page: Page) {return page.locator('#moduloid div').filter({ hasText: 'Importacion' }).getByRole('radio');}
+    static checkExportacion(page: Page) {return page.locator('#moduloid div').filter({ hasText: 'Exportacion' }).getByRole('radio');}
+    static checkVacio(page: Page) {return page.locator('#moduloid div').filter({ hasText: 'Vacios' }).getByRole('radio');}
+    static checkServicioLogistico(page: Page) {return page.locator('#moduloid div').filter({ hasText: 'Servicio Logistico' }).getByRole('radio');}
 
     //Texto Mensajes
     static readonly TEXTO_SOLICITUD_EXITOSA = '.sweet-alert.visible p.lead.text-muted'
@@ -61,20 +65,16 @@ export class CommonObjects {
     static readonly CONTENEDOR = '#demoras > tbody > tr > td:nth-child(3)'
 
     //Resumen
-    static readonly DEUDA_TOTAL = '#demorasTotalWip > tbody > tr > td:nth-child(1)'
-    static readonly ITBIS_TOTAL = '#demorasTotalWip > tbody > tr > td:nth-child(2)'
-    static readonly TOTAL_DEPOSITO = '#demorasTotalWip > tbody > tr > td:nth-child(3)'
-    static readonly TOTAL_A_PAGAR = '#demorasTotalWip > tbody > tr > td.text-right'
+    static deudaTotal(page: Page) {return page.locator('#demorasTotalWip tbody tr td').nth(0);}
+    static itbisTotal(page: Page) {return page.locator('#demorasTotalWip tbody tr td').nth(1);}
+    static totalDeposito(page: Page) {return page.locator('#demorasTotalWip tbody tr td').nth(2);}
+    static totalAPagar(page: Page) {return page.locator('#demorasTotalWip tbody tr td.text-right');}
 
     
-    // Modern Playwright selector method
-    static getGarantiaExcedida(page: Page) {
-        return page.getByRole('heading', { name: 'Garantia excedida!' });
-    }
+    static getGarantiaExcedida(page: Page) {return page.getByRole('heading', { name: 'Garantia excedida!' });}
+    static getBotonNo(page: Page) {return page.getByRole('button', { name: 'No' });}
+
     
-    static getBotonNo(page: Page) {
-        return page.getByRole('button', { name: 'No' });
-    }
 }
 
 
